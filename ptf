@@ -6,6 +6,10 @@
 # Website: https://www.trustedsec.com
 ####################################################################################
 
+'''
+Forking for macOS
+@__smokeless
+'''
 from src.core import *
 import sys
 import subprocess
@@ -14,6 +18,10 @@ import socket
 
 # create launcher
 def create_launcher():
+    '''
+    todo: maybe a better launcher, different install method?
+    :return:
+    '''
     cwd = os.getcwd()
     filewrite = open("/usr/local/bin/ptf", "w")
     filewrite.write("#!/bin/sh\ncd %s\nchmod +x ptf\n./ptf $*" % (cwd))
@@ -26,7 +34,7 @@ def check_internet():
         print_status("You can always type ./ptf --no-network-connection to skip the Internet check..")
         print_status("Checking for an Internet connection...")
         rhost = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        rhost.connect(('google.com', 0))
+        rhost.connect(('8.8.8.8', 53)) #hit a DNS macOS doesn't like port 0.
         rhost.settimeout(2)
         return 1
 
@@ -36,7 +44,7 @@ def check_internet():
 
 # some OS doesn't have /usr/local/bin create them if not
 if not os.path.isdir("/usr/local/bin/"): os.makedirs("/usr/local/bin/")
-
+#TODO: if fork gets heavy change this.
 if os.geteuid() != 0:
     print("\nThe Pentesters Framework (PTF) - by David Kennedy (ReL1K)")
     print("\nThis needs to be run as root. Please sudo it up! Exiting...")
