@@ -2,6 +2,8 @@
 The PenTesters Framework (PTF)
 ===
 
+### Making some changes so that this runs for macOS.
+
 #### A TrustedSec Project - Copyright 2017
 
 ### Written by: David Kennedy (@HackingDave)
