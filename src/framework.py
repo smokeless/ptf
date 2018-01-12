@@ -382,7 +382,11 @@ def use_module(module, all_trigger):
                                 after_commands(filename, install_location)
 
                         print_status("Running updatedb to tidy everything up.")
-                        subprocess.Popen("updatedb", shell=True).wait()
+                        #macos has a different command for updatedb
+                        if ostype == "MACOS":
+                            subprocess.Popen('locate.updatedb', shell=True).wait()
+                        else:
+                            subprocess.Popen("updatedb", shell=True).wait()
 
                     if not os.path.isdir(install_location):
                         print_error(
