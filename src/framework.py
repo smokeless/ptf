@@ -383,7 +383,7 @@ def use_module(module, all_trigger):
 
                         print_status("Running updatedb to tidy everything up.")
                         #macos has a different command for updatedb
-                        if profile_os() == "MACOS":
+                        if os_profile == "MACOS":
                             subprocess.Popen('/usr/libexec/locate.updatedb', shell=True).wait()
                         else:
                             subprocess.Popen("updatedb", shell=True).wait()
