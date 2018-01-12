@@ -20,8 +20,8 @@ print (banner)
 # funny random banner
 import random
 funny = random.sample(["Aliens", "Clowns", "Mr. Robot",
-                       "Zero Cool", "Goats", "Hackers", "Unicorns",
-                       "Steve Jobs", "The Woz", "Lisa", "Macintosh"], 1)[0]
+                       "Zero Cool", "Goats", "Hackers", "Unicorns"
+                       ], 1)[0]
 
 # blank variables used later
 deb_modules = ""
