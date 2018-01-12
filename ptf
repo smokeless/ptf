@@ -26,11 +26,21 @@ def create_launcher():
 
 # check for an Internet connection
 def check_internet():
+    if profile_os() == 'MACOS':
+        try:
+            print_status("You can always type ./ptf --no-network-connection to skip the Internet check..")
+            print_status("Checking for an Internet connection...")
+            rhost = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+            rhost.connect(('8.8.8.8', 53))
+            rhost.settimeout(2)
+            return 1
+        except Exception:
+            return 0
     try:
         print_status("You can always type ./ptf --no-network-connection to skip the Internet check..")
         print_status("Checking for an Internet connection...")
         rhost = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        rhost.connect(('8.8.8.8', 53)) #hit a DNS macOS doesn't like port 0.
+        rhost.connect(('google.com', 0))
         rhost.settimeout(2)
         return 1
 
