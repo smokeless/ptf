@@ -444,6 +444,18 @@ def use_module(module, all_trigger):
                         print_status(
                             "Pre-reqs for %s have been installed." % (module))
 
+                    # if OSTYPE is MACOS
+                    if ostype == "MACOS":
+                        print_status('Preparing dependencies for module: ' + module)
+                        from src.platforms.macOS import base_install_modules
+                        # grab all the modules we need
+                        macos_modules = module_parser(filename, "MACOS")
+                        base_install_modules(macos_modules)
+                        print_status(
+                            'Pre-reqs for %s have been installed.' % (module)
+                        )
+
+
                     print_status(
                         "Making the appropriate directory structure first")
                     subprocess.Popen("mkdir -p %s" %
