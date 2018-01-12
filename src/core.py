@@ -265,6 +265,8 @@ def profile_os():
 
     if os.path.isfile("/etc/fedora-release"):
         return "FEDORA"
+    if os.path.isfile("/usr/local/bin/brew"):
+        return "macOS"
 
     # will add support for more operating systems later
     # else use custom
